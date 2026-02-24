@@ -1,0 +1,24 @@
+{
+  "name": "cc-deadline",
+  "owner": {
+    "name": "omercanbalandi"
+  },
+  "metadata": {
+    "description": "Shows remaining context window percentage in the statusline"
+  },
+  "plugins": [
+    {
+      "name": "cc-deadline",
+      "source": "./",
+      "description": "Visual progress bar showing remaining context window percentage in the statusline",
+      "version": "0.1.0",
+      "author": {
+        "name": "omercanbalandi"
+      },
+      "repository": "https://github.com/omercanbalandi/cc-deadline",
+      "license": "MIT",
+      "keywords": ["statusline", "context", "progress-bar"],
+      "category": "productivity"
+    }
+  ]
+}

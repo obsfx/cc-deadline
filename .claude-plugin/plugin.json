@@ -1,0 +1,5 @@
+{
+  "name": "cc-deadline",
+  "version": "0.1.0",
+  "description": "Shows remaining context window percentage in the statusline with a visual progress bar"
+}
