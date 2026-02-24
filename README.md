@@ -6,9 +6,7 @@ Visual progress bar showing remaining context window percentage in the Claude Co
 Opus · ███████░░░ 75%
 ```
 
-- Filled blocks (white) = remaining context
-- Empty blocks (gray) = used context
-- Model name and percentage are dimmed
+Everything is rendered in dim gray — model name, progress bar, and percentage.
 
 ## Prerequisites
 
@@ -16,13 +14,10 @@ Opus · ███████░░░ 75%
 
 ## Installation
 
-### Option A: Via Plugin Marketplace (Recommended)
+### Via Plugin Marketplace
 
 ```bash
-# Add the cc-deadline marketplace
 claude plugin marketplace add obsfx/cc-deadline
-
-# Install the plugin
 claude plugin install cc-deadline
 ```
 
@@ -33,24 +28,26 @@ Or in Claude Code interactive mode:
 /plugin install cc-deadline
 ```
 
-### Option B: Install from Source
+### From Source
 
 ```bash
 git clone https://github.com/obsfx/cc-deadline.git
 claude plugin install ./cc-deadline
 ```
 
-The statusline is automatically configured on first session start via a `SessionStart` hook. Restart Claude Code after installing.
+Restart Claude Code after installing. The statusline is automatically configured via a `SessionStart` hook.
 
 ## How It Works
 
-The plugin uses a `SessionStart` hook to inject the statusline configuration into `~/.claude/settings.json`. The statusline script then:
+The plugin uses a `SessionStart` hook to inject the statusline configuration into `~/.claude/settings.json`. The path is updated on every session start to stay correct across version upgrades.
 
-1. Receives session JSON data from Claude Code on stdin
+The statusline script:
+
+1. Receives session JSON from Claude Code on stdin
 2. Extracts `model.display_name` and `context_window.remaining_percentage`
-3. Renders a 10-block progress bar with ANSI color coding
+3. Renders a 10-block progress bar
 
-The statusline updates automatically after each assistant response.
+Updates automatically after each assistant response.
 
 ## License
 
