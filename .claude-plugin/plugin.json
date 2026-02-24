@@ -1,5 +1,13 @@
 {
   "name": "cc-deadline",
-  "version": "0.1.0",
-  "description": "Shows remaining context window percentage in the statusline with a visual progress bar"
+  "version": "0.2.0",
+  "description": "Shows remaining context window percentage in the statusline with a visual progress bar",
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/setup-statusline.sh"
+      }
+    ]
+  }
 }

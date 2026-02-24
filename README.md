@@ -40,9 +40,11 @@ git clone https://github.com/obsfx/cc-deadline.git
 claude plugin install ./cc-deadline
 ```
 
+The statusline is automatically configured on first session start via a `SessionStart` hook. Restart Claude Code after installing.
+
 ## How It Works
 
-The plugin configures a statusline script that:
+The plugin uses a `SessionStart` hook to inject the statusline configuration into `~/.claude/settings.json`. The statusline script then:
 
 1. Receives session JSON data from Claude Code on stdin
 2. Extracts `model.display_name` and `context_window.remaining_percentage`
