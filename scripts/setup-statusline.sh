@@ -12,9 +12,5 @@ if [ ! -f "$SETTINGS_FILE" ]; then
   echo "{}" > "$SETTINGS_FILE"
 fi
 
-# Check if statusLine is already configured
-HAS_STATUSLINE=$(jq 'has("statusLine")' "$SETTINGS_FILE" 2>/dev/null)
-
-if [ "$HAS_STATUSLINE" != "true" ]; then
-  jq --arg cmd "$STATUSLINE_SCRIPT" '.statusLine = {"type": "command", "command": $cmd}' "$SETTINGS_FILE" > "${SETTINGS_FILE}.tmp" && mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
-fi
+# Always update statusLine to ensure path stays correct across version upgrades
+jq --arg cmd "$STATUSLINE_SCRIPT" '.statusLine = {"type": "command", "command": $cmd}' "$SETTINGS_FILE" > "${SETTINGS_FILE}.tmp" && mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
