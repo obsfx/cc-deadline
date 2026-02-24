@@ -20,7 +20,7 @@ Opus · ███████░░░ 75%
 
 ```bash
 # Add the cc-deadline marketplace
-claude plugin marketplace add omercanbalandi/cc-deadline
+claude plugin marketplace add obsfx/cc-deadline
 
 # Install the plugin
 claude plugin install cc-deadline
@@ -29,14 +29,14 @@ claude plugin install cc-deadline
 Or in Claude Code interactive mode:
 
 ```
-/plugin marketplace add omercanbalandi/cc-deadline
+/plugin marketplace add obsfx/cc-deadline
 /plugin install cc-deadline
 ```
 
 ### Option B: Install from Source
 
 ```bash
-git clone https://github.com/omercanbalandi/cc-deadline.git
+git clone https://github.com/obsfx/cc-deadline.git
 claude plugin install ./cc-deadline
 ```
 
