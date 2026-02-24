@@ -15,8 +15,17 @@ BAR=""
 EMPTY_BAR=""
 [ "$EMPTY" -gt 0 ] && EMPTY_BAR=$(printf "%${EMPTY}s" | tr ' ' '░')
 
-# Right-align: move cursor far right, then back by content length
+# Right-align using space padding
 CONTENT="${MODEL} · ${BAR}${EMPTY_BAR} ${REMAINING}%"
-LEN=${#CONTENT}
+CONTENT_LEN=${#CONTENT}
 
-printf '\033[999C\033[%dD\033[90m%s · \033[97m%s\033[90m%s %s%%\033[0m' "$LEN" "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
+COLS=$(stty size 2>/dev/null | cut -d' ' -f2)
+[ -z "$COLS" ] && COLS=120
+# Reserve space for Claude Code's built-in right-side elements
+COLS=$((COLS - 40))
+
+PAD=$((COLS - CONTENT_LEN))
+[ "$PAD" -lt 0 ] && PAD=0
+SPACES=$(printf "%${PAD}s" "")
+
+printf '%s\033[90m%s · \033[97m%s\033[90m%s %s%%\033[0m' "$SPACES" "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
