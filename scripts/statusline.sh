@@ -21,4 +21,13 @@ BAR=""
 EMPTY_BAR=""
 [ "$EMPTY" -gt 0 ] && EMPTY_BAR=$(printf "%${EMPTY}s" | tr ' ' '░')
 
-printf "${DIM}%s · ${WHITE}%s${DIM}%s %s%%${RESET}" "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
+# Content without ANSI codes for length calculation
+CONTENT_TEXT="${MODEL} · ${BAR}${EMPTY_BAR} ${REMAINING}%"
+CONTENT_LEN=${#CONTENT_TEXT}
+
+# Right-align using terminal width
+COLS=$(tput cols 2>/dev/null || echo 80)
+PAD=$((COLS - CONTENT_LEN))
+[ "$PAD" -lt 0 ] && PAD=0
+
+printf "%${PAD}s${DIM}%s · ${WHITE}%s${DIM}%s %s%%${RESET}" "" "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
