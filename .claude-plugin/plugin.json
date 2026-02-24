@@ -1,6 +1,5 @@
 {
   "name": "cc-deadline",
-  "version": "0.2.2",
-  "description": "Shows remaining context window percentage in the statusline with a visual progress bar",
-  "hooks": "./hooks/hooks.json"
+  "version": "0.2.3",
+  "description": "Shows remaining context window percentage in the statusline with a visual progress bar"
 }
