@@ -15,4 +15,8 @@ BAR=""
 EMPTY_BAR=""
 [ "$EMPTY" -gt 0 ] && EMPTY_BAR=$(printf "%${EMPTY}s" | tr ' ' '░')
 
-printf '\033[90m%s · \033[97m%s\033[90m%s %s%%\033[0m' "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
+# Right-align: move cursor far right, then back by content length
+CONTENT="${MODEL} · ${BAR}${EMPTY_BAR} ${REMAINING}%"
+LEN=${#CONTENT}
+
+printf '\033[999C\033[%dD\033[90m%s · \033[97m%s\033[90m%s %s%%\033[0m' "$LEN" "$MODEL" "$BAR" "$EMPTY_BAR" "$REMAINING"
